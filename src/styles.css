@@ -1,0 +1,216 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ===== NEON PURPLE + DARK BLUE BACKGROUND ===== */
+.game {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, #00fff0 0%, transparent 40%),
+    radial-gradient(circle at bottom right, #7f00ff 0%, transparent 40%),
+    linear-gradient(135deg, #020024, #090031, #000000);
+  background-size: 200% 200%;
+  animation: alienFlow 12s ease infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes alienFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ===== CARD ===== */
+.card {
+  animation: floatAlien 6s ease-in-out infinite;
+}
+
+@keyframes floatAlien {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ===== TITLE ===== */
+.neon-title {
+  color: #00fff0;
+  text-shadow:
+    0 0 10px #00fff0,
+    0 0 30px #00fff0,
+    0 0 60px #7f00ff;
+}
+
+/* ===== MODE BUTTONS ===== */
+.mode {
+  margin-bottom: 10px;
+}
+
+.mode button {
+  margin: 6px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: rgba(120, 0, 255, 0.25);
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.mode button:hover {
+  background: rgba(120, 0, 255, 0.45);
+}
+
+/* ===== MODE STATUS ===== */
+.mode-status {
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: #9d7cff;
+  text-shadow: 0 0 10px #9d7cff;
+  margin-bottom: 6px;
+}
+
+/* ===== TURN STATUS ===== */
+.status {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  color: #e0d7ff;
+  text-shadow: 0 0 8px rgba(224, 215, 255, 0.7);
+}
+
+/* ===== BOARD ===== */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  gap: 14px;
+  margin: 18px 0;
+}
+
+/* ===== CELLS ===== */
+.cell {
+  width: 110px;
+  height: 110px;
+  font-size: 3rem;
+  border-radius: 22px;
+  border: none;
+  cursor: pointer;
+  background: rgba(40, 20, 90, 0.7);
+  color: white;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.cell:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(138, 43, 226, 0.6);
+}
+
+/* X & O NEON COLORS */
+.cell.x {
+  color: #00eaff;
+  text-shadow: 0 0 14px #00eaff;
+}
+
+.cell.o {
+  color: #c77dff;
+  text-shadow: 0 0 14px #c77dff;
+}
+.cell {
+  position: relative;
+  overflow: hidden;
+}
+
+.cell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0, 255, 240, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cell:hover::after {
+  opacity: 1;
+}
+
+/* ===== RESET ===== */
+.reset {
+  margin-top: 14px;
+  padding: 10px 26px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #7f00ff, #3f0071);
+  color: white;
+  font-size: 0.95rem;
+  box-shadow: 0 0 20px rgba(127, 0, 255, 0.6);
+  transition: transform 0.15s ease;
+}
+
+.reset:hover {
+  transform: scale(1.05);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+  .board {
+    grid-template-columns: repeat(3, 90px);
+  }
+
+  .cell {
+    width: 90px;
+    height: 90px;
+    font-size: 2.4rem;
+  }
+}
+/* Winning line highlight */
+.cell.win {
+  animation: alienWin 1.2s infinite alternate;
+}
+
+@keyframes alienWin {
+  from {
+    box-shadow: 0 0 20px #00fff0;
+  }
+  to {
+    box-shadow:
+      0 0 40px #00fff0,
+      0 0 80px #7f00ff;
+  }
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+.score {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(120, 0, 255, 0.25);
+  box-shadow: 0 0 10px rgba(120, 0, 255, 0.6);
+}
